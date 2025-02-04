@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Using Include="System.Console" Static="true"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Version="8.0.0" Include="MySql.EntityFrameworkCore" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="../Scan2Dine.EntityModels.MySQL/Scan2Dine.EntityModels.MySQL.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,3 @@
+
+--Scaffolding an Existing Database in EF Core
+dotnet ef dbcontext scaffold "server=127.0.0.1;uid=root;pwd=root;database=os_db" MySql.EntityFrameworkCore --namespace Scan2Dine.EntityModels -o . -f 
