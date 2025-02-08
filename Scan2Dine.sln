@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scan2Dine.EntityModels.MySQL", "Scan2Dine.EntityModels.MySQL\Scan2Dine.EntityModels.MySQL.csproj", "{1CAE6BA2-CDBE-4DDC-97A7-069A530B14F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scan2Dine.DataContext.MySQL", "Scan2Dine.DataContext.MySQL\Scan2Dine.DataContext.MySQL.csproj", "{0CAAEA61-696E-4426-93DF-B3B0956CCF02}"
@@ -8,6 +8,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scan2Dine.UnitTests", "Scan2Dine.UnitTests\Scan2Dine.UnitTests.csproj", "{4130C1CD-2241-4600-8F76-0481FE818997}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scan2Dine.WebApi", "Scan2Dine.WebApi\Scan2Dine.WebApi.csproj", "{50DF674D-8064-44FA-B582-6931E19891B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scan2Dine.Mvc", "Scan2Dine.Mvc\Scan2Dine.Mvc.csproj", "{71B910FF-2436-4CE4-BC3C-6B9CA3982396}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,5 +33,9 @@ Global
 		{50DF674D-8064-44FA-B582-6931E19891B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50DF674D-8064-44FA-B582-6931E19891B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50DF674D-8064-44FA-B582-6931E19891B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71B910FF-2436-4CE4-BC3C-6B9CA3982396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71B910FF-2436-4CE4-BC3C-6B9CA3982396}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71B910FF-2436-4CE4-BC3C-6B9CA3982396}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71B910FF-2436-4CE4-BC3C-6B9CA3982396}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
