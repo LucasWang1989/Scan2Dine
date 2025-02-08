@@ -326,7 +326,8 @@ public partial class OsDbContext : DbContext
             entity.Property(e => e.FId)
                 .HasComment("ID")
                 .HasColumnType("bigint(20)")
-                .HasColumnName("F_ID");
+                .HasColumnName("F_ID")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.FCreatedDate)
                 .HasMaxLength(8)
                 .HasComment("Record created date")

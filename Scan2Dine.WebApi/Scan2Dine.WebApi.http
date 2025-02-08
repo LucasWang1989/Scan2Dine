@@ -1,0 +1,6 @@
+@Scan2Dine.WebApi_HostAddress = http://localhost:5215
+
+GET {{Scan2Dine.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
