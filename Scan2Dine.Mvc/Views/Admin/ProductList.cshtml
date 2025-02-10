@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ProductModel>
+
+<!-- row -->
+<div class="container-fluid">
+    <div class="d-flex mb-3 mb-lg-4 align-items-center">
+        <div class="mr-auto d-none d-lg-block">
+            <div class="d-flex flex-wrap align-items-center">
+                <div class="welcome-text">
+                    <h4>Hey, welcome back!</h4>
+                    <p class="mb-0">Manage your products here</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <div class="btn btn-success d-block text-white rounded-0" onclick="window.location.href = 'add-product.jsp'">
+                Add Products
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @if( Model is not null) {
+            @foreach(ProductModel product in Model) {
+                <div class="col-lg-12 col-xl-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row m-b-30">
+                                <div class="col-md-5 col-xxl-12">
+                                    <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
+                                        <div class="new-arrivals-img-contnent">
+                                            <img class="img-fluid" src="/customer/@product.FImgPath" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-xxl-12">
+                                    <div class="new-arrival-content position-relative">
+                                        <h4><a href="">@product.FName</a></h4>
+                                        <div class="comment-review star-rating">
+                                            <ul>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star-half-empty"></i></li>
+                                                <li><i class="fa fa-star-half-empty"></i></li>
+                                                <p class="price">$@(product.FPrice/100)</p>
+                                            </ul>
+        
+                                        </div>
+                                        <p>Availability: <span class="item"> In stock <i class="fa fa-check-circle text-success"></i></span></p>
+                                        <p>Product code: <span class="item">@product.FId</span> </p>
+                                        <p class="text-content">@product.FDesc</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

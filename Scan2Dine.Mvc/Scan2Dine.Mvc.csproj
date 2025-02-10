@@ -4,6 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+      <RazorLangVersion>Latest</RazorLangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -60,7 +61,20 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="wwwroot\admin\" />
+      <Folder Include="wwwroot\admin\js\assets\images\" />
+      <Folder Include="wwwroot\admin\js\images\demo\" />
+      <Folder Include="wwwroot\customer\img\cate\" />
+      <Folder Include="wwwroot\customer\img\lists\" />
       <Folder Include="wwwroot\lib\" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="wwwroot\admin\images\.DS_Store" />
+    </ItemGroup>
+  
+  <ItemGroup>
+      <ProjectReference Include="../Scan2Dine.EntityModels.MySQL/Scan2Dine.EntityModels.MySQL.csproj"/>
+  </ItemGroup>
 
 </Project>
