@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 namespace Scan2Dine.EntityModels;
 
 /// <summary>
@@ -31,7 +29,7 @@ public partial class OsProductDef
     /// <summary>
     /// Product image path
     /// </summary>
-    public string? FImgPath { get; set; }
+    public string FImgPath { get; set; }
 
     /// <summary>
     /// Record updated date

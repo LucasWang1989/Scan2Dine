@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 namespace Scan2Dine.EntityModels;
 
 /// <summary>
@@ -21,12 +19,12 @@ public partial class OsOrderProduct
     /// <summary>
     /// Product ID
     /// </summary>
-    public string FProductId { get; set; } = null!;
+    public long FProductId { get; set; }
 
     /// <summary>
     /// Product amount
     /// </summary>
-    public string FAmount { get; set; } = null!;
+    public int FAmount { get; set; }
 
     /// <summary>
     /// Record updated date

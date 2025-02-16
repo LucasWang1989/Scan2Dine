@@ -35,6 +35,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddOsDbContext();
 builder.Services.AddSingleton<IMemoryCache>(new MemoryCache(new MemoryCacheOptions()));
 builder.Services.AddScoped<IProductDefRepository, ProductDefRepository>();
+builder.Services.AddScoped<IMercOrderRepository, MercOrderRepository>();
 
 var app = builder.Build();
 
