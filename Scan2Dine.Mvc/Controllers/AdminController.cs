@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using System.Text;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Scan2Dine.EntityModels;
 using Scan2Dine.Mvc.Models;
@@ -9,17 +11,21 @@ public class AdminController : Controller
 {
     private readonly IHttpClientFactory _clientFactory;
     private readonly ILogger<AdminController> _logger;
+    private readonly IWebHostEnvironment _env;
 
-    public AdminController(ILogger<AdminController> logger, IHttpClientFactory clientFactory)
+    public AdminController(ILogger<AdminController> logger, 
+        IHttpClientFactory clientFactory,
+        IWebHostEnvironment env)
     {
         _logger = logger;
         _clientFactory = clientFactory;
+        _env = env;
     }
 
     public IActionResult Login(string username, string password)
     {
         // Temporarily using fixed username and password here.
-        if (username == "admin" && password == "123456")
+        if (username == "admin" && password == "111111")
         {
             HttpContext.Session.SetString("User", username);
             return RedirectToAction("ProductList", "Admin"); // if success
@@ -33,6 +39,44 @@ public class AdminController : Controller
     {
         HttpContext.Session.Remove("User");
         return RedirectToAction("Login");
+    }
+
+    public async Task<IActionResult> ProductAddition(
+        string? name, long price, string? imagePath, string? desc)
+    {
+        if (name is null 
+            || price is 0 
+            || imagePath is null 
+            || desc is null)
+        {
+            return View();
+        } 
+        
+        _logger.LogInformation("Start product addition process.");
+        OsProductDef product = new OsProductDef
+        {
+            FName = name,
+            FPrice = price,
+            FImgPath = imagePath,
+            FDesc = desc,
+            FUpdateDate = DateTime.Today.ToString("yyyyMMdd"),
+            FCreatedDate = DateTime.Today.ToString("yyyyMMdd"),
+            FUpdateTime = DateTime.Now.ToString("HHmmss"),
+            FCreatedTime = DateTime.Now.ToString("HHmmss")
+
+        };
+        
+        var jsonData = JsonSerializer.Serialize(product);
+        
+        HttpClient client = _clientFactory.CreateClient("Scan2Dine.WebApi");
+        HttpRequestMessage request = new(method: HttpMethod.Post, requestUri: "api/product")
+        {
+            Content = new StringContent(jsonData, Encoding.UTF8, "application/json")
+        };
+        HttpResponseMessage response = await client.SendAsync(request);
+        _logger.LogInformation("Product addition result: " + response.StatusCode);
+        
+        return RedirectToAction("ProductList");
     }
 
     public async Task<IActionResult> ProductList()
@@ -49,6 +93,24 @@ public class AdminController : Controller
             .ReadFromJsonAsync<IEnumerable<ProductModel>>();
 
         return View(model);
+    }
+    
+    public async Task<string> UploadDishPhoto(IFormFile fileUpload){
+        string fileName = fileUpload.FileName;
+        string suffixName = fileName.Substring(fileName.LastIndexOf(".", 
+            StringComparison.OrdinalIgnoreCase));
+        fileName = Guid.NewGuid() + suffixName;
+        try {
+            string path = Path.Combine(_env.WebRootPath, "customer/img/tof/");
+            using (var stream = System.IO.File.Create(path + fileName))
+            {
+                await fileUpload.CopyToAsync(stream);
+            }
+            return "img/tof/" + fileName;
+        } catch (Exception e)
+        {
+            return "";
+        }
     }
 
     public async Task<IActionResult> OrderList()
@@ -77,7 +139,7 @@ public class AdminController : Controller
 
         return View(model);
     }
-
+    
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

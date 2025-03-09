@@ -1,0 +1,100 @@
+﻿<div class="container-fluid">
+    <div class="d-flex mb-3 mb-lg-4 align-items-center">
+        <div class="mr-auto d-none d-lg-block">
+            <div class="d-flex flex-wrap align-items-center">
+                <div class="welcome-text">
+                    <h4>Hey, welcome back!</h4>
+                    <p class="mb-0">Add new products here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="basic-form">
+                        <form class="form-valide-with-icon" action="/admin/ProductAddition" method="post">
+                            <div class="form-group">
+                                <label class="text-label">Name *</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="text" class="form-control" id="val-name" name="name" placeholder="Enter a product name..">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-label">Price *</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="text" class="form-control" id="val-price" name="price" placeholder="Enter a product price..">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-label">Photo *</label>
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="hidden" name="imagePath" id="imagePath" value="">
+                                        <input type="file" class="custom-file-input" id="image_file">
+                                        <label class="custom-file-label" id="imagePathShown">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" onclick="upload()">Upload</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="val-description">Description <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <textarea class="form-control" id="val-description" name="desc" rows="5" placeholder="Type detail information of products here."></textarea>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn mr-2 btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("form").submit(function(e){
+        var para = $("#val-name").val();
+        var para2 = $("#val-price").val();
+        var para3 = $("#imagePath").val();
+        var para4 = $("#val-description").val();
+        if(para == ""
+            || para2 == ""
+                || para3 == ""
+                || para4 == "") {
+            alert("Fields can not be empty.");
+            return false;
+        }
+    });
+
+    function upload() {
+        var files = $("#image_file")[0].files
+        if (files.length <= 0) {
+            return alert("Please choose a photo first.");
+        }
+        var fd = new FormData()
+        fd.append('fileUpload', files[0])
+
+        $.ajax({
+            method: 'POST',
+            url: '/admin/UploadDishPhoto',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function(res) {
+                alert("Upload successful!");
+                $("#imagePath").val(res);
+            }
+        })
+    }
+</script>
